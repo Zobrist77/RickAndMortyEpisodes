@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/episodeFragment">
+
+    <!-- Fragmento de Episodios -->
+    <fragment
+        android:id="@+id/episodeFragment"
+        android:name="dam.pmdm.rickandmortyapi.ui.episodes.EpisodeFragment"
+        android:label="Episodios"
+        tools:layout="@layout/fragment_episode">
+
+        <!-- Navegar a detalle de episodio desde episodeFragment -->
+        <action
+            android:id="@+id/action_episodeFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+    </fragment>
+
+    <!-- Fragmento Detalle de Episodio -->
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="dam.pmdm.rickandmortyapi.ui.episodes.EpisodeDetailFragment"
+        android:label="Detalles del episodio"
+        tools:layout="@layout/fragment_episode_detail"
+        />
+
+    <!-- Fragmento Estadísticas -->
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="dam.pmdm.rickandmortyapi.ui.stats.StatsFragment"
+        android:label="Estadísticas"
+        tools:layout="@layout/fragment_stats" />
+
+    <!-- Fragmento Ajustes -->
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="dam.pmdm.rickandmortyapi.ui.settings.SettingsFragment"
+        android:label="Ajustes"
+        tools:layout="@layout/fragment_settings" />
+
+    <!-- Acciones globales (para el Drawer) -->
+    <!-- Permiten navegar desde cualquier fragmento -->
+    <action
+        android:id="@+id/action_global_episodeFragment"
+        app:destination="@id/episodeFragment"
+        app:popUpTo="@id/episodeFragment" inclusive="false"/>
+
+    <action
+        android:id="@+id/action_global_statsFragment"
+        app:destination="@id/statsFragment"
+        app:popUpTo="@id/episodeFragment" inclusive="false"/>
+
+    <action
+        android:id="@+id/action_global_settingsFragment"
+        app:destination="@id/settingsFragment"
+        app:popUpTo="@id/episodeFragment" inclusive="false"/>
+
+</navigation>
+

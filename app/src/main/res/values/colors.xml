@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="rick_blue_dark">#0B1E2D</color>
+    <color name="rick_green_neon">#00FF9C</color>
+    <color name="rick_yellow">#FFEB3B</color>
+
+    <color name="rick_blue_light">#06DECC</color>
+</resources>
+<!-- Azul oscuro: #0B1E2D
+Verde neón: #00FF9C
+Amarillo: #FFEB3B -->

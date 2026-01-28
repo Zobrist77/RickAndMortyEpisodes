@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <style name="Theme.RickAndMorty" parent="Theme.Material3.DayNight.NoActionBar">
+
+            <item name="colorPrimary">@color/rick_blue_dark</item>
+            <item name="colorOnPrimary">@color/rick_blue_light</item>
+
+            <item name="colorSecondary">@color/rick_green_neon</item>
+            <item name="colorOnSecondary">@color/rick_blue_dark</item>
+
+            <item name="colorTertiary">@color/rick_yellow</item>
+
+            <item name="android:statusBarColor">@color/rick_blue_dark</item>
+
+        </style>
+</resources>

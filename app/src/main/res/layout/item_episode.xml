@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemEpisodeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:paddingStart="20dp">
+
+    <!-- Nombre del episodio -->
+    <TextView
+        android:id="@+id/tvEpisodeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nombre episodio"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Código del episodio -->
+    <TextView
+        android:id="@+id/tvEpisodeCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="code"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold|italic"
+        android:textSize="16sp" />
+
+    <!-- Fecha de emisión -->
+    <TextView
+        android:id="@+id/tvAirDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:text="air"
+        android:textStyle="bold|italic"
+        android:textSize="16sp" />
+
+    <!-- Indicador de episodio visto -->
+    <TextView
+        android:id="@+id/episodeWatchedIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_visto_gone"
+        android:textColor="?attr/colorTertiary"
+        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:visibility="gone" />
+
+</LinearLayout>

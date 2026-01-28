@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rick And MortyAPI</string>
+    <string name="language_settings">Inglés / Castellano</string>
+    <string name="hintTextEmail">Correo electrónico</string>
+    <string name="hintTextPassword">Contraseña</string>
+    <string name="textLoginButton">Identificarse</string>
+    <string name="registrate">No tienes cuenta? Regístrate</string>
+    <string name="textEntraUniverso">Entra en nuestro universo</string>
+    <string name="edit_text_email">Correo electrónico</string>
+    <string name="edit_text_password">Contraseña</string>
+    <string name="registrar_text_button">Registrarse</string>
+    <string name="text_irlogin_button">Ir a identificarse</string>
+    <string name="switch_text_todos_button">Todos</string>
+    <string name="switch_text_vistos_button">Vistos</string>
+    <string name="text_episode_name_detail">Nombre del episodio</string>
+    <string name="text_codigo_episodio_fecha_details">S01E01 - Fecha</string>
+    <string name="switch_text_visto_details">Marcar como visto</string>
+    <string name="text_idioma_settings">Idioma</string>
+    <string name="text_tema_settings">Tema</string>
+    <string name="switch_text_tema_settings">Claro / Oscuro</string>
+    <string name="text_cerrar_sesion_settings">Cerrar sesión</string>
+    <string name="text_personaje_name_item">Nombre del personaje</string>
+    <string name="text_estado_personaje_item">Estado</string>
+    <string name="text_visto_gone">Visto</string>
+</resources>

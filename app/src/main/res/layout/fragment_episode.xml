@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/episodesFragmentRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.episodes.EpisodeFragment">
+
+    <!-- ToggleGroup para filtrar episodios: Todos / Vistos -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        android:padding="8dp"
+        android:background="?attr/colorPrimary"
+        style="?attr/materialButtonOutlinedStyle"
+        >
+
+        <!-- Botón Todos -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_text_todos_button"
+            android:backgroundTint="@color/rick_yellow"
+            android:textColor="?attr/colorOnPrimary"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+
+        <!-- Botón Vistos -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWatched"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_text_vistos_button"
+            android:textColor="?attr/colorOnPrimary"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:backgroundTint="@color/rick_yellow"
+            style="?attr/materialButtonOutlinedStyle"
+            />
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <!-- RecyclerView para listar episodios -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episodesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:background="?attr/colorPrimary"
+        />
+
+</LinearLayout>

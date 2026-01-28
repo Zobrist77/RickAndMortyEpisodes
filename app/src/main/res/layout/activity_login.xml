@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.auth.LoginActivity">
+
+    <!-- Imagen superior del login -->
+    <ImageView
+        android:id="@+id/imagenLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:src="@drawable/rick_toolbar"
+    />
+
+    <!-- Campo de email con hint -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:hint="@string/hintTextEmail"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:paddingStart="8dp"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="?attr/colorOnPrimary"
+        android:textColorHint="?attr/colorOnPrimary"
+        />
+
+    <!-- Campo de contraseña -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:hint="@string/hintTextPassword"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:paddingStart="8dp"
+        android:textSize="15sp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="?attr/colorOnPrimary"
+        android:textColorHint="?attr/colorOnPrimary"
+        />
+
+    <!-- Botón principal de login -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:text="@string/textLoginButton"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="?attr/colorTertiary"
+        android:textColor="@color/rick_blue_dark"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed-light"
+        />
+
+    <!-- Texto que dirige al registro -->
+    <TextView
+        android:id="@+id/tvGoRegister"
+        android:text="@string/registrate"
+        android:textColor="?attr/colorOnPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        />
+
+</LinearLayout>

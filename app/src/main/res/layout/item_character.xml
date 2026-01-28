@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:gravity="center_horizontal"
+    >
+
+    <!-- Imagen del personaje -->
+    <ImageView
+        android:id="@+id/ivCharacterImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <!-- Nombre del personaje -->
+    <TextView
+        android:id="@+id/tvCharacterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_personaje_name_item"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingTop="4dp" />
+
+    <!-- Estado del personaje -->
+    <TextView
+        android:id="@+id/tvCharacterStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_estado_personaje_item"
+        android:textColor="?attr/colorTertiary"
+        android:fontFamily="sans-serif"
+        android:textSize="13sp"
+        android:paddingTop="2dp" />
+
+</LinearLayout>

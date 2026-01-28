@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary">
+
+    <!-- Cambio de idioma -->
+    <TextView
+        android:text="@string/text_idioma_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"/>
+
+    <!-- Switch para cambiar idioma -->
+    <Switch
+        android:id="@+id/switchLanguage"
+        android:text="@string/language_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"/>
+
+    <!-- Cambio de tema -->
+    <TextView
+        android:text="@string/text_tema_settings"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif"
+        />
+
+    <!-- Switch para cambiar tema -->
+    <Switch
+        android:id="@+id/switchTheme"
+        android:text="@string/switch_text_tema_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:fontFamily="sans-serif" />
+
+    <!-- Botón cerrar sesión -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:text="@string/text_cerrar_sesion_settings"
+        android:layout_marginTop="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorTertiary"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        />
+</LinearLayout>

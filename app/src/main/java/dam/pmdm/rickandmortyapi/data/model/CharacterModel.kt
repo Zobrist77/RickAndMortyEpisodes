@@ -1,9 +1,8 @@
 package dam.pmdm.rickandmortyapi.data.model
 
 /**
- * Modelo que representa un personaje de Rick and Morty.
- * Se utiliza tanto en la lista de personajes de un episodio
- * como en la vista de detalle.
+ * Modelo que representa un personaje de la serie Rick and Morty.
+ * Se utiliza en la lista de personajes de un episodio y en la vista de detalle.
  */
 data class CharacterModel(
 
@@ -16,9 +15,9 @@ data class CharacterModel(
     // URL de la imagen del personaje
     val image: String,
 
-    // Estado vital del personaje (Alive, Dead, Unknown)
+    // Estado vital del personaje: "Alive", "Dead" o "unknown"
     val status: String,
 
-    // URL completa del recurso en la API
+    // URL completa del recurso del personaje en la API
     val url: String
 )

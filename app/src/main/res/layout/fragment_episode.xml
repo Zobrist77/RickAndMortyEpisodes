@@ -19,8 +19,7 @@
         app:selectionRequired="true"
         android:padding="8dp"
         android:background="?attr/colorPrimary"
-        style="?attr/materialButtonOutlinedStyle"
-        >
+        style="?attr/materialButtonOutlinedStyle" >
 
         <!-- Botón Todos -->
         <com.google.android.material.button.MaterialButton
@@ -32,8 +31,7 @@
             android:textColor="?attr/colorOnPrimary"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
-            style="?attr/materialButtonOutlinedStyle"
-            />
+            style="?attr/materialButtonOutlinedStyle" />
 
         <!-- Botón Vistos -->
         <com.google.android.material.button.MaterialButton
@@ -45,8 +43,7 @@
             android:fontFamily="sans-serif"
             android:textStyle="bold"
             android:backgroundTint="@color/rick_yellow"
-            style="?attr/materialButtonOutlinedStyle"
-            />
+            style="?attr/materialButtonOutlinedStyle" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -56,7 +53,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:background="?attr/colorPrimary"
-        />
+        android:background="?attr/colorPrimary"/>
 
 </LinearLayout>

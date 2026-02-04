@@ -15,13 +15,13 @@ import dam.pmdm.rickandmortyapi.databinding.ActivityRegisterBinding
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth                // Instancia de FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inicialización del ViewBinding
+        // Inicializa ViewBinding
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -36,16 +36,16 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        // Inicialización de Firebase Authentication
+        // Inicializa Firebase Authentication
         auth = FirebaseAuth.getInstance()
 
-        // Acción del botón de registro
+        // Configura el botón de registro
         binding.btnRegister.setOnClickListener {
 
-            val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
+            val email = binding.etEmail.text.toString().trim()       // Obtiene email
+            val password = binding.etPassword.text.toString().trim() // Obtiene contraseña
 
-            // Validación de campos
+            // Valida que ambos campos estén completos
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(
                     this,
@@ -53,13 +53,13 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                registerFirebase(email, password)
+                registerFirebase(email, password) // Registra el usuario en Firebase
             }
         }
 
-        // Volver a la pantalla de login
+        // Configura botón para volver al login
         binding.btnBackToLogin.setOnClickListener {
-            finish()
+            finish() // Cierra la actividad actual
         }
     }
 
@@ -68,31 +68,34 @@ class RegisterActivity : AppCompatActivity() {
      */
     private fun registerFirebase(email: String, password: String) {
 
-        // Se desactiva el botón para evitar registros múltiples
+        // Desactiva el botón para evitar múltiples registros simultáneos
         binding.btnRegister.isEnabled = false
 
+        // Llama a Firebase para crear el usuario
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { registerResult ->
 
                 if (registerResult.isSuccessful) {
 
+                    // Muestra mensaje de éxito al usuario
                     Toast.makeText(
                         this,
                         "Registro completado correctamente",
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    // Se vuelve al login tras un registro exitoso
-                    finish()
+                    finish() // Vuelve a la pantalla de login
 
                 } else {
 
-                    // Se reactiva el botón en caso de error
+                    // Reactiva el botón si hay error
                     binding.btnRegister.isEnabled = true
 
+                    // Obtiene mensaje de error
                     val errorMessage =
                         registerResult.exception?.message ?: "No se pudo completar el registro"
 
+                    // Muestra mensaje de error al usuario
                     Toast.makeText(
                         this,
                         errorMessage,

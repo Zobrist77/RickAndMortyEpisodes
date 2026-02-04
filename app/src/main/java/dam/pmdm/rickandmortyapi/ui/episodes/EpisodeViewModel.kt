@@ -1,5 +1,6 @@
 package dam.pmdm.rickandmortyapi.ui.episodes
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,84 +13,92 @@ import kotlinx.coroutines.launch
 
 /**
  * ViewModel que gestiona la lista de episodios,
- * la sincronización de los vistos con Firestore
+ * sincroniza los episodios vistos con Firestore
  * y proporciona funciones para actualizar el estado de cada episodio.
  */
 class EpisodeViewModel : ViewModel() {
 
+    // LiveData privado para almacenar la lista de episodios
     private val _episodes = MutableLiveData<List<EpisodeModel>>()
+    // LiveData público para mostrar los episodios
     val episodes: LiveData<List<EpisodeModel>> = _episodes
 
-    // Instancias de Firebase necesarias
+    // Instancia de Firebase Firestore para guardar y leer datos del usuario
     private val firestore = FirebaseFirestore.getInstance()
+    // Instancia de FirebaseAuth para obtener el usuario actual
     private val auth = FirebaseAuth.getInstance()
 
     /**
-     * Carga la lista de episodios desde la API y sincroniza los vistos desde Firestore
+     * Carga la lista de episodios desde la API
+     * y sincroniza los vistos desde Firestore
      */
     fun loadEpisodes() {
         viewModelScope.launch {
             try {
+                // Llama a la API para obtener todos los episodios
                 val response = RetrofitInstance.api.getEpisodes()
-                _episodes.value = response.results
+                _episodes.value = response.results // Actualiza LiveData con la respuesta
 
                 // Sincroniza la información de episodios vistos desde Firestore
                 syncViewedFromFirestore()
             } catch (e: Exception) {
-                _episodes.value = emptyList() // fallback en caso de error
+                // En caso de error al llamar la API, pone la lista vacía
+                _episodes.value = emptyList()
             }
         }
     }
 
     /**
-     * Obtiene del Firestore los episodios que el usuario ha marcado como vistos
+     * Obtiene los episodios que el usuario ha marcado como vistos en Firestore
      * y actualiza el LiveData correspondiente
      */
     private fun syncViewedFromFirestore() {
-        val userId = auth.currentUser?.uid ?: return
-        val currentEpisodes = _episodes.value ?: return
+        val userId = auth.currentUser?.uid ?: return // Sale si no hay usuario
+        val currentEpisodes = _episodes.value ?: return // Sale si no hay episodios cargados
 
         firestore.collection("users")
             .document(userId)
             .collection("episodes")
-            .get()
+            .get() // Obtiene los episodios guardados en Firestore
             .addOnSuccessListener { querySnapshot ->
-                val firestoreEpisodes = querySnapshot.documents
+                val firestoreEpisodes = querySnapshot.documents // Lista de documentos de Firestore
 
+                // Recorre cada documento de Firestore
                 firestoreEpisodes.forEach { doc ->
-                    val episodeId = doc.id.toIntOrNull() ?: return@forEach
-                    val viewedStatus = doc.getBoolean("viewed") ?: false
+                    val episodeId = doc.id.toIntOrNull() ?: return@forEach // Convierte ID a Int, salta si falla
+                    val viewedStatus = doc.getBoolean("viewed") ?: false // Obtiene si está marcado como visto
 
-                    // Buscamos el episodio correspondiente y actualizamos su estado
+                    // Busca el episodio correspondiente y actualiza su estado
                     currentEpisodes.find { episodioActual ->
                         episodioActual.id == episodeId
                     }?.viewed = viewedStatus
                 }
 
-                // Actualizamos LiveData para notificar al UI
+                // Actualiza LiveData para notificar a la UI de los cambios
                 _episodes.value = currentEpisodes
             }
             .addOnFailureListener {
-                // En caso de error, simplemente no actualizamos vistos
+                // Informa al usuario de que hubo un error al actualizar los datos
+                Toast.makeText(null, "Error al actualizar los episodios vistos", Toast.LENGTH_SHORT).show()
             }
     }
 
     /**
      * Cambia el estado "visto" de un episodio
-     * Este es el único punto de actualización del estado
+     * Este es el único punto de actualización del estado desde la UI
      */
     fun setEpisodeViewed(episodeId: Int, viewed: Boolean) {
-        val episodesList = _episodes.value?.toMutableList() ?: return
-        val index = episodesList.indexOfFirst { it.id == episodeId }
-        if (index == -1) return
+        val episodesList = _episodes.value?.toMutableList() ?: return // Sale si no hay episodios
+        val index = episodesList.indexOfFirst { episode -> episode.id == episodeId } // Busca el episodio
+        if (index == -1) return // Sale si no encuentra el episodio
 
-        val episodeToUpdate = episodesList[index]
-        episodeToUpdate.viewed = viewed
+        val episodeToUpdate = episodesList[index] // Obtiene el episodio a actualizar
+        episodeToUpdate.viewed = viewed // Cambia el estado "visto"
 
-        // Actualizamos LiveData
+        // Actualiza LiveData para notificar a la UI
         _episodes.value = episodesList
 
-        // Guardamos el cambio en Firestore
+        // Guarda el cambio en Firestore
         saveEpisodeToFirestore(episodeToUpdate)
     }
 
@@ -97,7 +106,7 @@ class EpisodeViewModel : ViewModel() {
      * Guarda la información del episodio en Firestore
      */
     private fun saveEpisodeToFirestore(episode: EpisodeModel) {
-        val userId = auth.currentUser?.uid ?: return
+        val userId = auth.currentUser?.uid ?: return // Sale si no hay usuario
 
         firestore.collection("users")
             .document(userId)
@@ -105,11 +114,11 @@ class EpisodeViewModel : ViewModel() {
             .document(episode.id.toString())
             .set(
                 mapOf(
-                    "name" to episode.name,
-                    "episode" to episode.episode,
-                    "air_date" to episode.air_date,
-                    "characters" to episode.characters,
-                    "viewed" to episode.viewed
+                    "name" to episode.name,           // Nombre del episodio
+                    "episode" to episode.episode,     // Código del episodio (S01E01)
+                    "air_date" to episode.air_date,   // Fecha de emisión
+                    "characters" to episode.characters, // Lista de personajes
+                    "viewed" to episode.viewed        // Estado visto/no visto
                 )
             )
     }

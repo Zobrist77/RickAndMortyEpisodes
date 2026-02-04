@@ -25,24 +25,24 @@ data class EpisodeModel(
     var viewed: Boolean = false
 )
 
-/**
- * Información de paginación devuelta por la API.
- * Se usa para controlar el total de resultados y páginas.
- */
-data class Info(
-
-    // Número total de elementos disponibles
-    val count: Int,
-
-    // Número total de páginas
-    val pages: Int,
-
-    // URL de la siguiente página (si existe)
-    val next: String?,
-
-    // URL de la página anterior (si existe)
-    val prev: String?
-)
+///**
+// * Información de paginación devuelta por la API.
+// * Se usa para controlar el total de resultados y páginas.
+// */
+//data class Info(
+//
+//    // Número total de elementos disponibles
+//    val count: Int,
+//
+//    // Número total de páginas
+//    val pages: Int,
+//
+//    // URL de la siguiente página (si existe)
+//    val next: String?,
+//
+//    // URL de la página anterior (si existe)
+//    val prev: String?
+//)
 
 /**
  * Respuesta completa del endpoint de episodios.
@@ -51,8 +51,8 @@ data class Info(
 data class EpisodesApiResponse(
 
     // Datos de paginación de la respuesta
-    val info: Info,
+    //val info: Info,
 
-    // Lista de episodios obtenidos
+    // Lista de episodios obtenidos desde la API
     val results: List<EpisodeModel>
 )

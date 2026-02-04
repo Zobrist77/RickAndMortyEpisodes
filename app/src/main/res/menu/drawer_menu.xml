@@ -4,25 +4,25 @@
     <!-- Item para la sección de episodios -->
     <item
         android:id="@+id/episodesFragment"
-        android:title="Episodios"
+        android:title="@string/drawer_episodios"
         android:icon="@android:drawable/ic_menu_view" />
 
     <!-- Item para la sección de estadísticas -->
     <item
         android:id="@+id/statsFragment"
-        android:title="Estadísticas"
+        android:title="@string/drawer_estadisticas"
         android:icon="@android:drawable/ic_menu_info_details" />
 
     <!-- Item para la sección de ajustes -->
     <item
         android:id="@+id/settingsFragment"
-        android:title="Ajustes"
+        android:title="@string/drawer_ajustes"
         android:icon="@android:drawable/ic_menu_preferences" />
 
     <!-- Item para la sección de información de la app -->
     <item
         android:id="@+id/aboutFragment"
-        android:title="Acerca de"
+        android:title="@string/drawer_about"
         android:icon="@android:drawable/ic_menu_help" />
 
 </menu>

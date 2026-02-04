@@ -15,7 +15,7 @@
         android:layout_marginTop="20dp"
         android:text="Has visto 0 de 0 episodios"
         android:textColor="?attr/colorOnPrimary"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:fontFamily="sans-serif"
         android:layout_gravity="center_horizontal"/>
 
@@ -27,7 +27,7 @@
         android:layout_marginTop="10dp"
         android:text="0 % completado"
         android:textColor="?attr/colorOnPrimary"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:fontFamily="sans-serif"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="16dp"/>
@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:fontFamily="sans-serif"
+
 
         />
 

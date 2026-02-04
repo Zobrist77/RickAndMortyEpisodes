@@ -34,34 +34,38 @@ class EpisodeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Infla el layout con ViewBinding
         binding = FragmentEpisodeBinding.inflate(inflater, container, false)
 
-        // Configuración del RecyclerView
+        // Configura el RecyclerView con layout lineal y adapter
         episodeAdapter = EpisodeAdapter(mutableListOf())
         binding.episodesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = episodeAdapter
+            layoutManager = LinearLayoutManager(requireContext()) // Establece layout vertical
+            adapter = episodeAdapter // Asigna el adapter
         }
 
         // Listener del toggle para filtrar episodios
         binding.toggleFilter.addOnButtonCheckedListener { toggleGroup, checkedId, isChecked ->
-            if (!isChecked) return@addOnButtonCheckedListener
+            if (!isChecked) return@addOnButtonCheckedListener // Sale si se desmarca el botón
 
+            // Actualiza el filtro según el botón seleccionado
             currentFilter = when (checkedId) {
                 binding.btnAll.id -> EpisodeFilter.ALL
                 binding.btnWatched.id -> EpisodeFilter.WATCHED
                 else -> EpisodeFilter.ALL
             }
+
+            // Aplica el filtro actualizado a la lista
             applyFilter()
         }
 
-        // Observamos la lista de episodios del ViewModel
+        // Observa la lista de episodios del ViewModel
         episodesViewModel.episodes.observe(viewLifecycleOwner) { episodesList ->
-            allEpisodes = episodesList.toMutableList() // guardamos la lista completa
-            applyFilter()
+            allEpisodes = episodesList.toMutableList() // Guarda la lista completa
+            applyFilter() // Aplica filtro actual para actualizar la UI
         }
 
-        // Iniciamos la carga de episodios desde la API
+        // Inicia la carga de episodios desde la API
         episodesViewModel.loadEpisodes()
 
         return binding.root
@@ -72,12 +76,15 @@ class EpisodeFragment : Fragment() {
      * y actualiza el adapter.
      */
     private fun applyFilter() {
+        // Filtra los episodios según el filtro actual
         val filteredEpisodes = when (currentFilter) {
             EpisodeFilter.ALL -> allEpisodes
             EpisodeFilter.WATCHED -> allEpisodes.filter { episodeItem ->
-                episodeItem.viewed
+                episodeItem.viewed // Incluye solo los episodios marcados como vistos
             }
         }
+
+        // Actualiza el adapter con la lista filtrada
         episodeAdapter.setEpisodes(filteredEpisodes)
     }
 
@@ -91,7 +98,6 @@ class EpisodeFragment : Fragment() {
  * Enum que representa los posibles filtros de episodios.
  */
 enum class EpisodeFilter {
-    ALL,
-    WATCHED
+    ALL,    // Muestra todos los episodios
+    WATCHED // Muestra solo los episodios vistos
 }
-

@@ -14,11 +14,13 @@ import dam.pmdm.rickandmortyapi.databinding.ItemEpisodeBinding
  * Adapter que muestra la lista de episodios en el RecyclerView.
  */
 class EpisodeAdapter(
-    private val episodes: MutableList<EpisodeModel>
+
+    private val episodes: MutableList<EpisodeModel> // Lista mutable de episodios
+
 ) : RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder>() {
 
     /**
-     * ViewHolder que mantiene las referencias a las vistas de cada episodio.
+     * ViewHolder que mantiene las referencias a las vistas de cada episodio
      */
     class EpisodeViewHolder(
         val binding: ItemEpisodeBinding
@@ -28,6 +30,7 @@ class EpisodeAdapter(
         parent: ViewGroup,
         viewType: Int
     ): EpisodeViewHolder {
+        // Infla el layout del item con ViewBinding
         val binding = ItemEpisodeBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -40,20 +43,21 @@ class EpisodeAdapter(
         holder: EpisodeViewHolder,
         position: Int
     ) {
-        val episode = episodes[position]
+        val episode = episodes[position] // Obtiene el episodio actual
 
-        // Asignación de datos del episodio
+        // Asigna datos del episodio a las vistas
         holder.binding.tvEpisodeName.text = episode.name
         holder.binding.tvEpisodeCode.text = episode.episode
         holder.binding.tvAirDate.text = episode.air_date
 
-        // Indicador visual si el episodio ha sido marcado como visto
+        // Muestra indicador si el episodio está marcado como visto
         holder.binding.episodeWatchedIndicator.visibility =
             if (episode.viewed) View.VISIBLE else View.GONE
 
-        // Navegamos al detalle del episodio pasando un bundle con los datos
+        // Navega al detalle del episodio al hacer click en el item
         holder.itemView.setOnClickListener { itemView ->
 
+            // Prepara un bundle con los datos necesarios del episodio
             val bundle = Bundle().apply {
                 putInt("episodeId", episode.id)
                 putString("episodeName", episode.name)
@@ -62,7 +66,7 @@ class EpisodeAdapter(
                 putStringArrayList("characters", ArrayList(episode.characters))
             }
 
-            // Navegación usando el NavController del itemView
+            // Navega usando el NavController asociado al itemView
             itemView.findNavController().navigate(
                 R.id.action_episodeFragment_to_episodeDetailFragment,
                 bundle
@@ -70,14 +74,14 @@ class EpisodeAdapter(
         }
     }
 
-    override fun getItemCount(): Int = episodes.size
+    override fun getItemCount(): Int = episodes.size // Retorna el tamaño de la lista
 
     /**
-     * Actualiza la lista de episodios mostrada en el RecyclerView.
+     * Actualiza la lista de episodios mostrada en el RecyclerView
      */
     fun setEpisodes(newEpisodes: List<EpisodeModel>) {
-        episodes.clear()
-        episodes.addAll(newEpisodes)
-        notifyDataSetChanged()
+        episodes.clear() // Limpia la lista actual
+        episodes.addAll(newEpisodes) // Añade los nuevos episodios
+        notifyDataSetChanged() // Notifica al RecyclerView que cambió la lista
     }
 }

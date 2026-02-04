@@ -23,11 +23,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inicialización del ViewBinding
+        // Inicializa ViewBinding
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicialización de Firebase Authentication
+        // Inicializa Firebase Authentication
         auth = FirebaseAuth.getInstance()
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.loginLayout) { view, insets ->
@@ -48,13 +48,13 @@ class LoginActivity : AppCompatActivity() {
             finish()
         } else {
 
-            // Acción del botón de inicio de sesión
+            // Configura botón de inicio de sesión
             binding.btnLogin.setOnClickListener {
 
                 val email = binding.etEmail.text.toString().trim()
                 val password = binding.etPassword.text.toString().trim()
 
-                // Validación de campos
+                // Valida que los campos estén completos
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(
                         this,
@@ -62,11 +62,11 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loginFirebase(email, password)
+                    loginFirebase(email, password)      // Realiza el login del usuario
                 }
             }
 
-            // Navegación a la pantalla de registro
+            // Configura TextView para navegar a la pantalla de registro
             binding.tvGoRegister.setOnClickListener {
                 val intent = Intent(this, RegisterActivity::class.java)
                 startActivity(intent)
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
                 if (loginResult.isSuccessful) {
 
-                    // Acceso correcto a la aplicación
+                    // Muestra mensaje de sesión iniciada correctamente
                     Toast.makeText(
                         this,
                         "Sesión iniciada correctamente",
@@ -99,10 +99,11 @@ class LoginActivity : AppCompatActivity() {
 
                 } else {
 
-                    // Error durante la autenticación
+                    // Obtiene mensaje de error si falla la autenticación
                     val errorMessage =
                         loginResult.exception?.message ?: "No se pudo iniciar sesión"
 
+                    // Muestra mensaje de error al usuario
                     Toast.makeText(
                         this,
                         errorMessage,

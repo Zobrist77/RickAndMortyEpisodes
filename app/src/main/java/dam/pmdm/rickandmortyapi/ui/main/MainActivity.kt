@@ -29,40 +29,40 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
 
-        // Inflamos el layout con ViewBinding
+        // Infla el layout con ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.contentLayout) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        ViewCompat.setOnApplyWindowInsetsListener(binding.contentLayout) { contentView, windowInsets ->
+            val systemBarsInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            contentView.setPadding(systemBarsInsets.left, systemBarsInsets.top, systemBarsInsets.right, systemBarsInsets.bottom)
+            windowInsets
         }
 
-        // Usamos Toolbar como ActionBar
+        // Configura la Toolbar como ActionBar
         setSupportActionBar(binding.toolbar)
 
-        // Obtenemos el NavController desde el NavHostFragment
+        // Obtiene el NavController desde el NavHostFragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(binding.fragmentContainer.id) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Configuramos el drawer toggle
+        // Configura el toggle del drawer (icono hamburguesa)
         val drawerToggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
             binding.toolbar,
-            android.R.string.ok,
-            android.R.string.cancel
+            R.string.open_drawer,
+            R.string.close_drawer
         )
+        // Escucha cambios en el drawer
         binding.drawerLayout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-
-        // Control del Navigation Drawer
+        // Controla la selección de elementos en el Navigation Drawer
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
 
-            // NavOptions para controlar el back stack y evitar duplicados
+            // Configura NavOptions para controlar el back stack y evitar duplicados
             val navOptions = NavOptions.Builder()
                 .setPopUpTo(R.id.episodeFragment, false) // limpia stack hasta episodio sin eliminarlo
                 .setLaunchSingleTop(true)                // evita crear fragmentos duplicados
@@ -71,27 +71,27 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
 
                 R.id.episodesFragment -> {
-                    // Navegamos a la pantalla de Episodios
+                    // Navega a la pantalla de Episodios
                     navController.navigate(R.id.episodeFragment, null, navOptions)
                 }
 
                 R.id.statsFragment -> {
-                    // Navegamos a la pantalla de Estadísticas
+                    // Navega a la pantalla de Estadísticas
                     navController.navigate(R.id.statsFragment, null, navOptions)
                 }
 
                 R.id.settingsFragment -> {
-                    // Navegamos a la pantalla de Ajustes
+                    // Navega a la pantalla de Ajustes
                     navController.navigate(R.id.settingsFragment, null, navOptions)
                 }
 
                 R.id.aboutFragment -> {
-                    // Mostramos un diálogo con información de la app
+                    // Muestra un diálogo con información de la app
                     showAboutDialog()
                 }
             }
 
-            // Cerramos el drawer después de seleccionar una opción
+            // Cierra el drawer después de seleccionar una opción
             binding.drawerLayout.closeDrawers()
             true
         }

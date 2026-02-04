@@ -9,7 +9,7 @@
     android:background="?attr/colorPrimary"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.auth.LoginActivity">
+    tools:context=".ui.auth.LoginActivity" >
 
     <!-- Imagen superior del login -->
     <ImageView
@@ -17,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:src="@drawable/rick_toolbar"
-    />
+        android:src="@drawable/rick_toolbar" />
 
     <!-- Campo de email con hint -->
     <EditText
@@ -34,8 +33,7 @@
         android:textSize="15sp"
         android:fontFamily="sans-serif-condensed-light"
         android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary"
-        />
+        android:textColorHint="?attr/colorOnPrimary" />
 
     <!-- Campo de contraseña -->
     <EditText
@@ -51,8 +49,7 @@
         android:textSize="15sp"
         android:fontFamily="sans-serif-condensed-light"
         android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary"
-        />
+        android:textColorHint="?attr/colorOnPrimary" />
 
     <!-- Botón principal de login -->
     <Button
@@ -65,8 +62,7 @@
         android:textColor="@color/rick_blue_dark"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:fontFamily="sans-serif-condensed-light"
-        />
+        android:fontFamily="sans-serif-condensed-light" />
 
     <!-- Texto que dirige al registro -->
     <TextView
@@ -78,7 +74,6 @@
         android:fontFamily="sans-serif-condensed-light"
         android:textStyle="bold"
         android:textSize="12sp"
-        android:paddingTop="16dp"
-        />
+        android:paddingTop="16dp" />
 
 </LinearLayout>

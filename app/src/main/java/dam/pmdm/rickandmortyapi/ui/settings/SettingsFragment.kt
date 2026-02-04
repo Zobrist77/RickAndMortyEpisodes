@@ -33,10 +33,10 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): android.view.View {
 
-        // Inflamos layout con ViewBinding
+        // Infla el layout con ViewBinding
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        // Inicializamos SharedPreferences
+        // Carga las preferencias guardadas
         val sharedPrefs = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
         // Recuperamos valores guardados de idioma y tema
@@ -47,48 +47,48 @@ class SettingsFragment : Fragment() {
         applyTheme(isDarkThemeSaved)
         applyLanguage(isSpanishLanguageSaved)
 
-        // Configuramos los switches con los valores actuales
+        // Configura los switches con los valores actuales
         binding.switchLanguage.isChecked = isSpanishLanguageSaved
         binding.switchTheme.isChecked = isDarkThemeSaved
 
         // Listener switch de idioma
-        binding.switchLanguage.setOnCheckedChangeListener { _: CompoundButton, isSpanishSelected: Boolean ->
+        binding.switchLanguage.setOnCheckedChangeListener { switchLanguage: CompoundButton, isSpanishSelected: Boolean ->
 
-            // Guardamos elección en SharedPreferences
+            // Guarda elección en SharedPreferences
             sharedPrefs.edit().putBoolean("language_spanish", isSpanishSelected).apply()
 
-            // Aplicamos idioma seleccionado
+            // Aplica idioma seleccionado
             applyLanguage(isSpanishSelected)
 
-            // Mostramos feedback
+            // Muestra mensaje de confirmación
             Toast.makeText(
                 requireContext(),
                 "Idioma cambiado a: ${if (isSpanishSelected) "Español" else "Inglés"}",
                 Toast.LENGTH_SHORT
             ).show()
 
-            // Reiniciamos Activity para aplicar nuevo idioma
+            // Reinicia Activity para aplicar el idioma
             requireActivity().recreate()
         }
 
 
         // Listener switch de tema
-        binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton, isDarkThemeSelected: Boolean ->
+        binding.switchTheme.setOnCheckedChangeListener { switchTheme: CompoundButton, isDarkThemeSelected: Boolean ->
 
-            // Guardamos elección en SharedPreferences
+            // Guarda elección en SharedPreferences
             sharedPrefs.edit { putBoolean("theme_dark", isDarkThemeSelected) }
 
-            // Aplicamos tema seleccionado
+            // Aplica tema seleccionado
             applyTheme(isDarkThemeSelected)
 
-            // Mostramos feedback
+            // Muestra la selección al usuario
             Toast.makeText(
                 requireContext(),
                 "Tema cambiado a: ${if (isDarkThemeSelected) "Oscuro" else "Claro"}",
                 Toast.LENGTH_SHORT
             ).show()
 
-            // Reiniciamos Activity para aplicar nuevo tema
+            // Reinicia la Activity para aplicar cambios visuales
             requireActivity().recreate()
         }
 
@@ -96,13 +96,17 @@ class SettingsFragment : Fragment() {
         // Listener botón de logout
         binding.btnLogout.setOnClickListener { logoutButton ->
 
-            // Cerrar sesión con FirebaseAuth
+            // Cierra la sesión con FirebaseAuth
             FirebaseAuth.getInstance().signOut()
 
-            // Feedback al usuario
-            Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show()
+            // Toast para informar al usuario del cierre de la sesión
+            Toast.makeText(
+                requireContext(),
+                "Sesión cerrada",
+                Toast.LENGTH_SHORT
+            ).show()
 
-            // Redirigir a LoginActivity y limpiar back stack
+            // Redirige a LoginActivity y limpiar el historial
             val intentToLogin = Intent(requireContext(), LoginActivity::class.java)
             intentToLogin.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intentToLogin)
@@ -124,16 +128,12 @@ class SettingsFragment : Fragment() {
 
     /**
      * Aplica idioma de la app (Español/Inglés)
-     * @param isSpanish true si Español, false si Inglés
+     * @param isSpanish true si es Español, false si es Inglés
      */
     private fun applyLanguage(isSpanish: Boolean) {
         AppCompatDelegate.setApplicationLocales(
             LocaleListCompat.forLanguageTags(if (isSpanish) "es" else "en")
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     companion object {

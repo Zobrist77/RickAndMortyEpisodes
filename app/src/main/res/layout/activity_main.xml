@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- Contenido Principal -->
     <LinearLayout
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical" >
 
         <!-- Toolbar principal con logo -->
         <androidx.appcompat.widget.Toolbar
@@ -21,8 +21,7 @@
             android:padding="5dp"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:logo="@drawable/rick_toolbar"
-            />
+            app:logo="@drawable/rick_toolbar" />
 
         <!-- FragmentContainer para NavHostFragment -->
         <androidx.fragment.app.FragmentContainerView
@@ -31,8 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph"
-            />
+            app:navGraph="@navigation/nav_graph" />
     </LinearLayout>
 
     <!-- Navigation Drawer con menú lateral -->
@@ -43,7 +41,6 @@
         android:layout_gravity="start"
         app:itemTextColor="?attr/colorTertiary"
         android:background="?attr/colorPrimary"
-        app:menu="@menu/drawer_menu"
-        />
+        app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
